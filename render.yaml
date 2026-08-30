@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: linkedin-profile-api
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_KEYS
+        sync: false
+      - key: LINKEDIN_LI_AT
+        sync: false
+      - key: LINKEDIN_JSESSIONID
+        sync: false
+      - key: LINKEDIN_EMAIL
+        sync: false
+      - key: LINKEDIN_PASSWORD
+        sync: false
+      - key: LINKEDIN_MIN_REQUEST_INTERVAL_MS
+        value: "1500"
+      - key: PROFILE_CACHE_TTL_MS
+        value: "21600000"
+      - key: ENABLE_RAW_DEBUG
+        value: "false"
